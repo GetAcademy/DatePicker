@@ -11,13 +11,12 @@
             this.root = document.createElement('div');
             this.shadowRoot.appendChild(this.root);
             this.root.innerHTML = /*html*/ `
-            <button>▲</button>
-            <button>▼</button>
+            <button delta="1">▲</button>
+            <button delta="-1">▼</button>
         `;
             let btns = this.root.getElementsByTagName('button');
             btns[0].onclick = this.click.bind(this);
             btns[1].onclick = this.click.bind(this);
-            this.upBtn = btns[0];
         }
 
         setStyle(style) {
@@ -31,14 +30,16 @@
         }
 
         click(event) {
-            if (!this.onclick) return;
-            var source = event.target || event.srcElement;
-            let appEvent = new CustomEvent('up-or-down-click', {
+            const source = event.target || event.srcElement;
+            const delta = parseInt(source.getAttribute('delta'));
+            let arg = {
                 bubbles: true,
-                cancelable: true, 
-                delta: source === this.upBtn ? 1 : -1,
-            });
-            document.dispatchEvent(appEvent);
+                cancelable: true,
+                composed: true,
+                detail: { delta },
+            };
+            let appEvent = new CustomEvent('up-or-down-click', arg);
+            this.dispatchEvent(appEvent);
         }
     }
 

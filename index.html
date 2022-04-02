@@ -13,9 +13,9 @@
     <up-and-down-buttons-panel></up-and-down-buttons-panel>
     <script>
         let myTag = document.getElementsByTagName('up-and-down-buttons-panel')[0];
-        myTag.onclick = function (delta) {
-            console.log(delta);
-        }
+        myTag.addEventListener('up-or-down-click', function (event) {
+            console.log(event.detail.delta);
+        });
     </script>
 </body>
 

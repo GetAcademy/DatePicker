@@ -1,30 +1,26 @@
 (function () {
-    class UpAndDownButtonPanel extends HTMLElement {
+    class UpAndDownButtonPanel extends TerjeElement {
         constructor() {
             super();
-            this.attachShadow({ mode: 'open' });
-
-            const style = document.createElement('style');
-            this.setStyle(style);
-            this.shadowRoot.appendChild(style);
-
-            this.root = document.createElement('div');
-            this.shadowRoot.appendChild(this.root);
+            this.setStyle(this.getStyle());
             this.root.innerHTML = /*html*/ `
-            <button delta="1">▲</button>
-            <button delta="-1">▼</button>
-        `;
+                <button delta="1">▲</button>
+                <button delta="-1">▼</button>
+            `;
             let btns = this.root.getElementsByTagName('button');
             btns[0].onclick = this.click.bind(this);
             btns[1].onclick = this.click.bind(this);
         }
 
-        setStyle(style) {
-            style.innerText = /*css*/`
+        getStyle() {
+            return /*css*/`
                 div {
                     display: flex;
                     flex-direction: column;
-                    width: 2rem;                    
+                    width: 2rem;
+                }
+                button{
+                    font-size: 75%;
                 }
             `;
         }

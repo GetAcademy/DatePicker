@@ -1,5 +1,5 @@
 class TerjeElement extends HTMLElement {
-    constructor(styleCss) {
+    constructor() {
         super();
         this.attachShadow({ mode: 'open' });
 

@@ -7,9 +7,10 @@
         }
 
         connectedCallback() {
-            this.min = this.getAttribute('min');
-            this.max = this.getAttribute('max');
-            this.value = this.getAttribute('value');
+            this.min = parseInt(this.getAttribute('min'));
+            this.max = parseInt(this.getAttribute('max'));
+            this.value = parseInt(this.getAttribute('value'));
+            console.log(this.value, this.min, this.max);
             this.root.innerHTML = /*html*/ `
                 <input type="number" min="${this.min}" max="${this.max}" step="1" value="${this.value}" />
                 <up-and-down-buttons-panel></up-and-down-buttons-panel>
@@ -21,9 +22,7 @@
 
         onclick(event) {
             const delta = event.detail.delta;
-            console.log(this.value);
             this.value = Math.min(Math.max(this.value + delta, this.min), this.max);            
-            console.log(this.value);
             this.myInput.value = this.value;
         }
 

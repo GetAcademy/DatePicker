@@ -3,7 +3,6 @@
         constructor() {
             super();
             this.setStyle(this.getStyle());
-
         }
 
         connectedCallback() {

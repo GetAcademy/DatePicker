@@ -10,9 +10,8 @@
             this.root.innerHTML = /*html*/ `
                 <integer-input min="1" max="31" value="${day}"></integer-input>
                 <integer-input min="1" max="12" value="${month}"></integer-input>
-                <integer-input min="2022" max="2100" value="${year}"></integer-input>
-                
-            `;
+                <integer-input min="2022" max="2100" value="${year}"></integer-input>                
+            `;            
         }
 
         getStyle() {
